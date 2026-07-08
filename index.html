@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamics 365 Agent Templates</title>
+  <style>
+    :root {
+      --d365: #002050;
+      --accent: #0078d4;
+      --copilot: #6264a7;
+      --erp: #0b556a;
+      --bg: #f3f4f8;
+      --card: #ffffff;
+      --text: #1b1a19;
+      --muted: #605e5c;
+      --border: #e1dfdd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, var(--d365), var(--accent));
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 10px; font-size: 2.2rem; font-weight: 700; }
+    header p { margin: 0 auto; max-width: 720px; font-size: 1.05rem; opacity: 0.95; }
+    .badges { margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .badge {
+      display: inline-block; padding: 5px 12px; border-radius: 14px;
+      background: rgba(255,255,255,0.18); color: #fff; font-size: 0.8rem;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.3);
+    }
+    main { max-width: 1040px; margin: 0 auto; padding: 40px 24px 64px; }
+    .section-title { font-size: 1.5rem; margin: 8px 0 24px; }
+    .intro { color: var(--muted); max-width: 820px; margin-bottom: 36px; }
+    .grid {
+      display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px 22px 20px;
+      display: flex; flex-direction: column;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.10); }
+    .card .tag {
+      align-self: flex-start; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.04em; font-weight: 600; padding: 3px 9px; border-radius: 10px;
+      margin-bottom: 12px; color: #fff;
+    }
+    .tag.local { background: var(--copilot); }
+    .tag.external { background: var(--erp); }
+    .tag.firstparty { background: var(--d365); }
+    .card h3 { margin: 0 0 10px; font-size: 1.15rem; }
+    .card h3 a { color: var(--accent); text-decoration: none; }
+    .card h3 a:hover { text-decoration: underline; }
+    .card p { margin: 0 0 16px; color: var(--muted); font-size: 0.94rem; flex: 1; }
+    .card .link {
+      align-self: flex-start; font-size: 0.88rem; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+    }
+    .card .link:hover { text-decoration: underline; }
+    footer {
+      text-align: center; padding: 28px 24px; color: var(--muted);
+      font-size: 0.85rem; border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .filter-btn {
+      cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: 600;
+      padding: 8px 16px; border-radius: 18px; border: 1px solid var(--border);
+      background: var(--card); color: var(--muted);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .card.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dynamics 365 Agent Templates</h1>
+    <p>Pre-built, deploy-ready AI agents for Dynamics 365 — built by the Dynamics 365 FastTrack team at Microsoft.</p>
+    <div class="badges">
+      <a class="badge" href="https://learn.microsoft.com/dynamics365/customer-service/">Dynamics 365 Customer Service</a>
+      <a class="badge" href="https://learn.microsoft.com/microsoft-copilot-studio/fundamentals-what-is-copilot-studio">Copilot Studio</a>
+      <a class="badge" href="https://make.powerapps.com">Power Platform</a>
+      <a class="badge" href="LICENSE">MIT License</a>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section-title">🤖 Available Agents</h2>
+    <p class="intro">
+      Agent templates are pre-configured, deploy-ready AI agents for Dynamics 365 designed to address
+      common business scenarios — such as customer service case management and ERP sales order processing.
+      Each template ships as a complete package that you can deploy in minutes or customize to fit your
+      organization's needs.
+    </p>
+
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">All Agents</button>
+      <button class="filter-btn" data-filter="erp">AI ERP</button>
+      <button class="filter-btn" data-filter="customer-service">Customer Service</button>
+      <button class="filter-btn" data-filter="implementation">Implementation</button>
+    </div>
+
+    <div class="grid">
+      <div class="card" data-category="erp">
+        <span class="tag external">AI ERP Agent</span>
+        <h3><a href="https://github.com/microsoft/Dynamics-365-FastTrack-Implementation-Assets/tree/master/Agents/AI%20ERP%20Agents/Sales%20Order%20Agent">Sales Order Agent</a></h3>
+        <p>
+          An autonomous agent that processes sales orders received as email attachments — extracting
+          structured data with AI, validating customers and products, and creating orders in Dynamics 365
+          finance and operations apps with minimal human intervention, while routing exceptions for
+          manual review and sending status notifications.
+        </p>
+        <a class="link" href="https://github.com/microsoft/Dynamics-365-FastTrack-Implementation-Assets/tree/master/Agents/AI%20ERP%20Agents/Sales%20Order%20Agent">Open on GitHub →</a>
+      </div>
+
+      <div class="card" data-category="customer-service">
+        <span class="tag firstparty">First Party</span>
+        <h3><a href="https://learn.microsoft.com/en-us/dynamics365/contact-center/administer/autonomous-agents-overview?toc=%2Fdynamics365%2Fcustomer-service%2Fadminister%2Ftoc.json&bc=..%2F..%2Fbreadcrumb%2Ftoc.yml">D365 Customer Service First Party Agents</a></h3>
+        <p>
+          Microsoft's out-of-the-box autonomous agents for Dynamics 365 Customer Service and Contact
+          Center — built-in agents such as case management and customer knowledge management that resolve
+          issues and automate service workflows with no custom build required.
+        </p>
+        <a class="link" href="https://learn.microsoft.com/en-us/dynamics365/contact-center/administer/autonomous-agents-overview?toc=%2Fdynamics365%2Fcustomer-service%2Fadminister%2Ftoc.json&bc=..%2F..%2Fbreadcrumb%2Ftoc.yml">Learn more →</a>
+      </div>
+
+      <div class="card" data-category="customer-service">
+        <span class="tag firstparty">Customer Service</span>
+        <h3><a href="https://learn.microsoft.com/en-us/dynamics365/guidance/agent-templates/service-agent-templates">D365 Customer Service Agent Templates</a></h3>
+        <p>
+          A curated set of ready-to-use service agent templates for Dynamics 365 Customer Service —
+          covering common support scenarios such as case management, knowledge lookups, and customer
+          self-service — that you can deploy quickly and tailor to your organization's service processes.
+        </p>
+        <a class="link" href="https://learn.microsoft.com/en-us/dynamics365/guidance/agent-templates/service-agent-templates">Learn more →</a>
+      </div>
+
+      <div class="card" data-category="implementation">
+        <span class="tag external">Implementation</span>
+        <h3><a href="https://github.com/microsoft/Dynamics-365-FastTrack-Implementation-Assets/tree/master/Agents/Implementation%20Agents">Implementation Agents</a></h3>
+        <p>
+          Agents that accelerate Dynamics 365 implementation projects — including the Trace Parser Agent
+          for analyzing execution traces and diagnosing performance issues, and the Release Planner Agent
+          for navigating release plans and planning upcoming feature adoption.
+        </p>
+        <a class="link" href="https://github.com/microsoft/Dynamics-365-FastTrack-Implementation-Assets/tree/master/Agents/Implementation%20Agents">Open on GitHub →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Licensed under the <a href="LICENSE">MIT License</a> ·
+    <a href="README.md">View README</a> ·
+    © Microsoft Corporation
+  </footer>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.filter-btn');
+      var cards = document.querySelectorAll('.grid .card');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-filter');
+          buttons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          cards.forEach(function (card) {
+            var match = filter === 'all' || card.getAttribute('data-category') === filter;
+            card.classList.toggle('hidden', !match);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
